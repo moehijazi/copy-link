@@ -2,23 +2,67 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Copying...</title>
-  <script>
-    window.onload = function() {
-      // The text/code you want to copy
-      const textToCopy = "123123";
-      
-      navigator.clipboard.writeText(textToCopy).then(() => {
-        alert("Copied to clipboard: " + textToCopy);
-        // Optional: Send them back to your Canva site or another page
-        // window.location.href = "https://husseinmaha.my.canva.site/weddinginvite2";
-      }).catch(err => {
-        console.error("Failed to copy text: ", err);
-      });
-    };
-  </script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: transparent;
+      height: 100vh;
+    }
+    .copy-box {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #ffffff;
+      padding: 10px 16px;
+      border-radius: 30px;
+      border: 1px solid #e0e0e0;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+    .text-display {
+      font-weight: 600;
+      color: #333;
+      font-size: 15px;
+    }
+    button {
+      background: #8B5CF6; /* Customize to match your theme */
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+    button:hover { background: #7C3AED; }
+  </style>
 </head>
-<body style="font-family: sans-serif; text-align: center; padding-top: 50px;">
-  <p>Copying to clipboard...</p>
+<body>
+
+  <div class="copy-box">
+    <span class="text-display">YOUR-TEXT-HERE</span>
+    <button id="copyBtn">Copy</button>
+  </div>
+
+  <script>
+    const textToCopy = "123123";
+    const btn = document.getElementById("copyBtn");
+
+    btn.addEventListener("click", () => {
+      navigator.clipboard.writeText(textToCopy).then(() => {
+        btn.textContent = "Copied! ✓";
+        btn.style.background = "#10B981";
+        setTimeout(() => {
+          btn.textContent = "Copy";
+          btn.style.background = "#8B5CF6";
+        }, 2500);
+      });
+    });
+  </script>
+
 </body>
 </html>
